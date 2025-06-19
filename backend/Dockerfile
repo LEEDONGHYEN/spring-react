@@ -1,9 +1,8 @@
-FROM rockylinux:9
+FROM registry.access.redhat.com/ubi9/ubi
 
 USER root
 
-# 필요한 명령어 추가
-RUN microdnf install -y java-17-openjdk && microdnf clean all
+RUN dnf -y install java-17-openjdk && dnf clean all
 
 WORKDIR /app
 COPY target/*.jar app.jar
