@@ -1,5 +1,7 @@
 FROM rockylinux:9
 
+USER root
+
 RUN dnf -y update && dnf -y install java-17-openjdk
 
 WORKDIR /app
