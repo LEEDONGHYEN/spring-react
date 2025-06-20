@@ -53,13 +53,31 @@
 		</dependency>
 	</dependencies>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
+<build>
+  <plugins>
+    <plugin>
+      <groupId>org.eclipse.jkube</groupId>
+      <artifactId>kubernetes-maven-plugin</artifactId>
+      <version>1.16.2</version>
+      <executions>
+        <execution>
+          <goals>
+            <goal>resource</goal> <!-- YAML 파일 생성 -->
+            <goal>build</goal>    <!-- (선택) 이미지 빌드 -->
+            <goal>push</goal>     <!-- (선택) 이미지 푸시 -->
+            <goal>apply</goal>    <!-- K8s에 배포 -->
+          </goals>
+        </execution>
+      </executions>
+      <configuration>
+        <docker>
+          <name>backend</name>
+          <registry>172.31.9.234:8082/backend:latest/registry>
+          <skip>true</skip> <!-- 이미지 수동 빌드시 필수 -->
+        </docker>
+      </configuration>
+    </plugin>
+  </plugins>
+</build>
 
 </project>
