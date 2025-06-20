@@ -58,6 +58,14 @@
 				<groupId>org.eclipse.jkube</groupId>
 				<artifactId>kubernetes-maven-plugin</artifactId>
 				<version>1.16.2</version>
+				 <configuration>
+					<images>
+					<image>
+						<name>172.31.9.234:8082/backend</name>
+					</image>
+					</images>
+					<pushImage>true</pushImage> <!-- 이미지 push도 자동 -->
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
