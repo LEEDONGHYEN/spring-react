@@ -59,12 +59,17 @@
       <groupId>org.eclipse.jkube</groupId>
       <artifactId>kubernetes-maven-plugin</artifactId>
       <version>1.16.2</version>
+
+	  <configuration>
+		<registry>
+			<username>iwari</username>
+			<password>Ktng2019!!</password>
+			<url>172.31.9.234:8082/backend:latest</url>
+		</registry>
       <executions>
         <execution>
           <goals>
             <goal>resource</goal> <!-- YAML 파일 생성 -->
-            <goal>build</goal>    <!-- (선택) 이미지 빌드 -->
-            <goal>push</goal>     <!-- (선택) 이미지 푸시 -->
             <goal>apply</goal>    <!-- K8s에 배포 -->
           </goals>
         </execution>
@@ -73,7 +78,7 @@
         <docker>
           <name>backend</name>
           <registry>172.31.9.234:8082/backend:latest</registry>
-          <skip>true</skip> <!-- 이미지 수동 빌드시 필수 -->
+          <skip>false</skip> <!-- 이미지 수동 빌드시 필수 -->
         </docker>
       </configuration>
     </plugin>
