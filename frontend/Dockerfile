@@ -9,7 +9,7 @@ RUN apt-get update && \
 
 # Step 3: React build 폴더 복사
 # frontend/build 폴더가 Dockerfile과 같은 디렉토리에 있어야 함
-COPY frontend/build/ /var/www/html/
+COPY build/ /var/www/html/
 
 # Step 4: 기본 Nginx 설정 유지 또는 수정 가능
 # 기본 설정으로 index.html을 서빙함
