@@ -2,7 +2,7 @@
 FROM nginx:alpine
 
 # Step 2: React build 결과 복사
-COPY frontend/build /usr/share/nginx/html
+COPY build /usr/share/nginx/html
 
 # Step 3: 포트 오픈
 EXPOSE 80
