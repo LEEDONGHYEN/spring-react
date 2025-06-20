@@ -1,11 +1,21 @@
-# Step 1: nginx 이미지 기반
-FROM nginx:alpine
+# Step 1: Ubuntu 기반 이미지 사용
+FROM ubuntu:22.04
 
-# Step 2: React build 결과 복사
-COPY build /usr/share/nginx/html
+# Step 2: 환경 설정 및 Nginx 설치
+RUN apt-get update && \
+    apt-get install -y nginx && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
-# Step 3: 포트 오픈
+# Step 3: React build 폴더 복사
+# frontend/build 폴더가 Dockerfile과 같은 디렉토리에 있어야 함
+COPY frontend/build/ /var/www/html/
+
+# Step 4: 기본 Nginx 설정 유지 또는 수정 가능
+# 기본 설정으로 index.html을 서빙함
+
+# Step 5: 포트 오픈
 EXPOSE 80
 
-# Step 4: 기본 명령어
+# Step 6: 컨테이너 시작 시 Nginx 실행
 CMD ["nginx", "-g", "daemon off;"]
