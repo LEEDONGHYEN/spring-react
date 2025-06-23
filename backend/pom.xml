@@ -60,31 +60,8 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
       </plugin>
-
-      <!-- JKube Plugin -->
-      <plugin>
-        <groupId>org.eclipse.jkube</groupId>
-        <artifactId>kubernetes-maven-plugin</artifactId>
-        <version>1.16.2</version>
-        <executions>
-          <execution>
-            <goals>
-              <goal>build</goal>     <!-- 이미지 빌드 -->
-              <goal>push</goal>      <!-- 레지스트리에 push -->
-              <goal>apply</goal>     <!-- 쿠버네티스 배포 -->
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <generator>
-            <name>java-exec</name>  <!-- JAR 실행 -->
-          </generator>
-          <image>
-            <name>172.31.9.234:8082/backend:latest</name> <!-- Podman용 이미지 이름 -->
-          </image>
-        </configuration>
-      </plugin>
     </plugins>
+
   </build>
 
 </project>
