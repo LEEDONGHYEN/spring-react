@@ -53,14 +53,69 @@
 		</dependency>
 	</dependencies>
 
-<build>
-  <plugins>
-    <plugin>
-	  <groupId>org.eclipse.jkube</groupId>
-      <artifactId>kubernetes-maven-plugin</artifactId>
-      <version>1.16.2</version> <!-- 또는 최신 버전 확인 -->
-    </plugin>
-  </plugins>
-</build>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.example</groupId>
+  <artifactId>backend</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>backend</name>
+  <description>Spring Boot App</description>
+
+  <properties>
+    <java.version>17</java.version>
+    <jkube.version>1.16.2</jkube.version>
+  </properties>
+
+  <dependencies>
+    <!-- Spring Boot 기본 의존성 -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <!-- Spring Boot Plugin -->
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+
+      <!-- JKube Plugin -->
+      <plugin>
+        <groupId>org.eclipse.jkube</groupId>
+        <artifactId>kubernetes-maven-plugin</artifactId>
+        <version>1.16.2</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>build</goal>     <!-- 이미지 빌드 -->
+              <goal>push</goal>      <!-- 레지스트리에 push -->
+              <goal>apply</goal>     <!-- 쿠버네티스 배포 -->
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <generator>
+            <name>java-exec</name>  <!-- JAR 실행 -->
+          </generator>
+          <image>
+            <name>172.31.9.234:8082/backend</name> <!-- Podman용 이미지 이름 -->
+            <registry>172.31.9.234:8082</registry>
+            <tag>latest</tag>
+          </image>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
+
 
 </project>
