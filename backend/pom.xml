@@ -46,11 +46,6 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.eclipse.jkube</groupId>
-			<artifactId>kubernetes-maven-plugin</artifactId>
-			<version>1.16.2</version>
-		</dependency>
 	</dependencies>
 
 <build>
@@ -60,8 +55,15 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
       </plugin>
-    </plugins>
 
+      <!-- JKube Plugin -->
+      <plugin>
+        <groupId>org.eclipse.jkube</groupId>
+        <artifactId>kubernetes-maven-plugin</artifactId>
+        <version>1.16.2</version>
+      </plugin>
+    </plugins>
+	
   </build>
 
 </project>
