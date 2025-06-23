@@ -80,7 +80,7 @@
             <name>java-exec</name>  <!-- JAR 실행 -->
           </generator>
           <image>
-            <name>172.31.9.234:8082/backend/latest</name> <!-- Podman용 이미지 이름 -->
+            <name>172.31.9.234:8082/backend:latest</name> <!-- Podman용 이미지 이름 -->
             <registry>172.31.9.234:8082</registry>
             <tag>latest</tag>
           </image>
